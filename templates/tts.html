@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        
+        <link rel="stylesheet" href="../static/styles/styles.css" type="text/css">
+
+    </head>
+
+    <body>
+        <div class="app">
+            <div class="nav"><p>Text-to-Speech!</p></div>
+
+            <div class="video">
+
+                <video id="player" controls>
+                    <source src="../static/result_video.mp4" type="video/mp4">
+                </video>
+
+                <button class="menu" onclick="mainMenu(this)">Main Menu</button>
+                <button class="menu" onclick="previousMenu(this)">Previous Menu</button>
+
+            </div>
+
+            <div class="main">
+
+                <div class="inputs">
+
+                    <div class="input-item">
+                        <label>Enter an English Sentence:</label>
+                        <input id="sentence" type="text" name="sentence"></input>
+                    </div>
+
+                    <div class="input-item">
+                        <label>Choose Speaker:</label>
+                        <select id="speaker" name="speaker">
+                            {% for speaker in speakers %}
+                            <option value="{{speaker}}">{{speaker}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="input-item">
+                        <label>Choose Language:</label>
+                        <select id="language" name="language">
+                            {% for language in languages %}
+                            <option value="{{language}}">{{language}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="input-item">
+                        <label>Upload an MP4 Video(Optional):</label>
+                        <input type="file" id="videoFile" accept="video/mp4" onchange="validateAndUpload(this);" name="input_video" />
+                    </div>
+
+                    <div class="input-item">
+                        <button class="submit">Submit</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="../static/scripts/tts.js"></script>
+
+    </body>
+
+</html>
