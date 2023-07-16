@@ -1,3 +1,10 @@
+# User-defined
+*.pth
+*.mp4
+*.avi
+*.wav
+__pycache__
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
