@@ -84,10 +84,12 @@ def ttshandler():
             video = os.getcwd() + './static/input_video.mp4'
 
         except:
-
-            video = os.getcwd()+"/static/sample_video.mp4"
+            
+            video = os.getcwd()+"/static/"+[x for x in os.listdir(os.getcwd()+"/static/") if 'sample' in x][0]
         
         tts.tts_to_file(text=sentence, speaker=speaker, language=language, file_path=tts_out_path)
+        print()        
+        print(video)
         print()
         lipsync(video)
 

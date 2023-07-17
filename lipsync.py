@@ -9,7 +9,11 @@ from lipsyncDep.models import Wav2Lip
 import platform
 
 img_size = 96
-face = os.getcwd()+"/static/sample_video.mp4"
+try:
+    face = os.getcwd()+"/static/sample.mp4"
+except:
+    face = os.getcwd()+"/static/sample.jpg"
+
 audio_var = os.getcwd()+"/static/output.wav"
 face_det_batch_size = 16
 static = False
@@ -22,6 +26,7 @@ rotate = False
 crop = [0, -1, 0, -1]
 checkpoint_path = os.getcwd()+'/lipsyncDep/models/wav2lip_gan.pth'
 outfile = os.getcwd()+'/static/result_video.mp4'
+fps = 25.
 
 if os.path.isfile(face) and face.split('.')[1] in ['jpg', 'png', 'jpeg']:
 	static = True
@@ -150,12 +155,12 @@ def load_model(path):
 
 def lipsync(face_p):
 	face = face_p
+	fps = 25.
 	if not os.path.isfile(face):
 		raise ValueError('Input must be a valid path to video/image file')
 
 	elif face.split('.')[1] in ['jpg', 'png', 'jpeg']:
 		full_frames = [cv2.imread(face)]
-		fps = fps
 
 	else:
 		video_stream = cv2.VideoCapture(face)
