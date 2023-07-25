@@ -61,7 +61,7 @@ def ttshandler():
         try:
 
             if request.form['choice'] == 'main':
-                return render_template('main.html')
+                return redirect('main.html')
             elif request.form['choice'] == 'previous':
                 return redirect(request.referrer)
             
@@ -85,7 +85,7 @@ def ttshandler():
 
         except:
             
-            video = os.getcwd()+"/static/"+[x for x in os.listdir(os.getcwd()+"/static/") if 'sample' in x][0]
+            video = os.getcwd()+"/static/"+[x for x in os.listdir(os.getcwd()+"/static/") if 'sample.' in x][0]
         
         tts.tts_to_file(text=sentence, speaker=speaker, language=language, file_path=tts_out_path)
         print()        
@@ -103,7 +103,7 @@ def clonerhandler():
         try:
 
             if request.form['choice'] == 'main':
-                return render_template('main.html')
+                return redirect('main.html')
             elif request.form['choice'] == 'previous':
                 return redirect(request.referrer)
             
