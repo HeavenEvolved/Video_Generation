@@ -48,8 +48,9 @@ tts_out_path = os.getcwd()+'/static/output.wav'
 #             print(f'    - {processes[pid]}')
 #         print('-' * 120)
 
-model = TTS.list_models()[0]
+model = TTS.list_models(TTS())[0]
 tts = TTS(model, progress_bar=True)
+del model
 speakers = [x.strip() for x in tts.speakers if 'en' in x]
 languages = [x.strip() for x in tts.languages]
 
